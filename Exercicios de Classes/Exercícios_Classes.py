@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
-
+import random
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -78,7 +78,7 @@ class Retangulo:
     def calcular_perimetro(self):
         self.perimetro = (int(self.largura) + int(self.comprimento))*2
         return self.perimetro
-
+'''
 action = Retangulo('9','4')
 print(action)
 tamanho_do_comprimento = action.mudar_lados()
@@ -88,3 +88,23 @@ soma_area = action.calcular_area()
 print(f'Você vai precisar de {soma_area} pisos para cobrir a área.')
 soma_perimetro = action.calcular_perimetro()
 print(f'Também vai precisar de {soma_perimetro} metros de rodapé para calçar todas as paredes.')
+'''
+
+class Pessoa:
+    def __init__(self,nome,idade,peso,altura):
+        nome = 'Lucas'
+        idade = 0
+        peso = 2
+        altura = 50
+
+    def Envelhecer(self):
+        pass
+
+    def Engordar(self):
+        pass
+
+    def Emagrecer(self):
+        pass
+
+    def Crescer(self):
+        pass
