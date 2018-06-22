@@ -57,3 +57,34 @@ if __name__ == '__main__':
     print(soma_area)
 """
 
+class Retangulo:
+    def __init__(self,comprimento,largura):
+        self.comprimento = comprimento
+        self.largura = largura
+
+    def mudar_lados(self):
+        comprimento_informado = input('Informe o comprimento do retângulo: ')
+        largura_informada = input('Informe a largura do retângulo: ')
+        self.comprimento = comprimento_informado
+        self.largura = largura_informada
+
+    def retornar_valor(self):
+        return (int(self.comprimento),'metros' ,int(self.largura),'metros')
+
+    def calcular_area(self):
+        self.area = (int(self.largura) * int(self.comprimento))
+        return self.area
+
+    def calcular_perimetro(self):
+        self.perimetro = (int(self.largura) + int(self.comprimento))*2
+        return self.perimetro
+
+action = Retangulo('9','4')
+print(action)
+tamanho_do_comprimento = action.mudar_lados()
+tamanho_das_coisas = action.retornar_valor()
+print(tamanho_das_coisas)
+soma_area = action.calcular_area()
+print(f'Você vai precisar de {soma_area} pisos para cobrir a área.')
+soma_perimetro = action.calcular_perimetro()
+print(f'Também vai precisar de {soma_perimetro} metros de rodapé para calçar todas as paredes.')
