@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
-
+import random
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -143,32 +143,63 @@ print(f'Também vai precisar de {soma_perimetro} metros de rodapé para calçar 
 
 class Pessoa:
     def __init__(self,nome,idade,peso,altura):
-        self.nome = 'Lucas'
-        self.idade = 0
-        self.peso = 2
-        self.altura = 50
+        self.nome = nome
+        self.idade = idade
+        self.peso = idade
+        self.altura = altura
+
+        self.opcoes_biotipo = ['magro', 'gordo']
+        self.biotipo = random.choice(self.opcoes_biotipo)
+        print("MEU BIOTIPO VAI SER: ",self.biotipo)
+
         self.emagrecer = [1,2]
         self.definir = random.choice(self.emagrecer)
 
     def Envelhecer(self):
         while self.idade < 100:
+            if self.idade < 10:
+                self.Engordar()
+                self.Crescer()
+
+            else:
+                if self.idade <= 21:
+                    self.Crescer()
+
+                variacao = random.randint(0,100)
+                if variacao <= 50:
+                    if self.biotipo == "magro":
+                        self.Emagrecer()
+                    else:
+                        self.Engordar()
+
+                elif variacao <= 80:
+                    pass
+
+                else:
+                    if self.biotipo == "magro":
+                        self.Engordar()
+                    else:
+                        self.Emagrecer()
             self.idade += 1
+
         return self.idade
+
     def Engordar(self):
-        while self.idade < 10:
-            self.peso += random.randint(1,5)
-        if self.idade > 10 and self.definir == 1:
-            self.peso += 1
+        self.peso += 1
         return self.peso
 
     def Emagrecer(self):
-        if self.idade > 10 and self.definir == 2:
-            self.peso += 1
+        self.peso -= 1
         return self.peso
+
     def Crescer(self):
-        while self.idade < 21:
-            self.altura += 0.5
+        self.altura += 0.5
         return self.altura
 
+    #def __str__(self):
+    #    return ('Nome:'+ self.nome+'idade:'+self.idade+'peso:'+self.peso+'altura:'+self.altura)
+
 alguem = Pessoa('João',0,2,50)
-print(alguem.idade)
+alguem.Envelhecer()
+print(alguem)
+print('Nome:'+ alguem.nome+'idade:'+str(alguem.idade)+'peso:'+str(alguem.peso)+'altura:'+str(alguem.altura))
