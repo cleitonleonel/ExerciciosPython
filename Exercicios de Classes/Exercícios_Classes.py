@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
-
+import random
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -56,6 +56,7 @@ if __name__ == '__main__':
     soma_area = action.CalculaArea()
     print(soma_area)
 """
+
 
 class Retangulo1:
 
