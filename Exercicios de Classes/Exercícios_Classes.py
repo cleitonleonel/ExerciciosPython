@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 #
-import random
+
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -57,6 +57,7 @@ if __name__ == '__main__':
     print(soma_area)
 """
 
+
 class Retangulo1:
 
     def __init__(self, base,altura):
@@ -106,6 +107,7 @@ if __name__ == '__main__':
     soma_perimetro = action.calculaPerimetro()
     print('Você vai gastar %s metros quadarados em pisos e %s metros em rodapés'%(soma_area, soma_perimetro))
 """
+
 
 class Retangulo:
     def __init__(self,comprimento,largura):
