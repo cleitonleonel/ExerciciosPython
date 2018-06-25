@@ -92,19 +92,32 @@ print(f'Também vai precisar de {soma_perimetro} metros de rodapé para calçar 
 
 class Pessoa:
     def __init__(self,nome,idade,peso,altura):
-        nome = 'Lucas'
-        idade = 0
-        peso = 2
-        altura = 50
+        self.nome = 'Lucas'
+        self.idade = 0
+        self.peso = 2
+        self.altura = 50
+        self.emagrecer = [1,2]
+        self.definir = random.choice(self.emagrecer)
 
     def Envelhecer(self):
-        pass
-
+        while self.idade < 100:
+            self.idade += 1
+        return self.idade
     def Engordar(self):
-        pass
+        while self.idade < 10:
+            self.peso += random.randint(1,5)
+        if self.idade > 10 and self.definir == 1:
+            self.peso += 1
+        return self.peso
 
     def Emagrecer(self):
-        pass
-
+        if self.idade > 10 and self.definir == 2:
+            self.peso += 1
+        return self.peso
     def Crescer(self):
-        pass
+        while self.idade < 21:
+            self.altura += 0.5
+        return self.altura
+
+alguem = Pessoa('João',0,2,50)
+print(self.idade)
