@@ -57,6 +57,56 @@ if __name__ == '__main__':
     print(soma_area)
 """
 
+class Retangulo1:
+
+    def __init__(self, base,altura):
+        self.base = base
+        self.altura = altura
+
+    def muda_valor_lados(self):
+        new_base = int(input('Digite um novo tamanho para a base: '))
+        self.base = new_base
+        new_altura = int(input('Digite um novo tamanho para a altura: '))
+        self.altura = new_altura
+
+    def mostraValor(self):
+        return self.base,self.altura
+    
+    def calculaArea(self):
+        self.total_area = self.base * self.altura / 2
+        return self.total_area
+
+    def calculaPerimetro(self):
+        self.total_area = self.base + self.altura * 2
+        return self.total_area
+
+
+if __name__ == '__main__':
+
+    """
+    base = int(input('Digite um para a base: '))
+    altura = int(input('Digite um para a altura: '))
+    action = Retangulo(base, altura)
+    print(action)
+    novo_tamanho = action.muda_valor_lados()
+    print(novo_tamanho)
+    tamanho_dos_lados = action.mostraValor()
+    print(tamanho_dos_lados)
+    soma_area = action.calculaArea()
+    print(soma_area)
+    soma_perimetro = action.calculaPerimetro()
+    print(soma_perimetro)
+"""
+"""
+    # USO DO LADO DO CLIENTE
+    base = int(input('Digite um para a base: '))
+    altura = int(input('Digite um para a altura: '))
+    action = Retangulo(base, altura)
+    soma_area = action.calculaArea()
+    soma_perimetro = action.calculaPerimetro()
+    print('Você vai gastar %s metros quadarados em pisos e %s metros em rodapés'%(soma_area, soma_perimetro))
+"""
+
 class Retangulo:
     def __init__(self,comprimento,largura):
         self.comprimento = comprimento
