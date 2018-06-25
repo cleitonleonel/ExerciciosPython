@@ -120,4 +120,4 @@ class Pessoa:
         return self.altura
 
 alguem = Pessoa('João',0,2,50)
-print(self.idade)
+print(alguem.idade)
