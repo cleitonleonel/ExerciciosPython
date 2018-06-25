@@ -57,6 +57,7 @@ if __name__ == '__main__':
     print(soma_area)
 """
 
+
 class Retangulo1:
 
     def __init__(self, base,altura):
