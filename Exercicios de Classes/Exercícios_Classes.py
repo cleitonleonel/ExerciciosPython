@@ -157,14 +157,14 @@ class Pessoa:
         self.opcoes_doencas_hereditarias = {
             1:{'doenca':'hipertensão', 'idade_inicio':25, 'probabilidade':1, 'reducao_vida':1},
             2:{'doenca':'diabetes', 'idade_inicio':10, 'probabilidade':1, 'reducao_vida':2},  # perde 2 anos
-            3:{'doenca':'cancer', 'idade_incio':2, 'probabilidade':1, 'reducao_vida':3} # perde 3 anos
+            3:{'doenca':'cancer', 'idade_inicio':2, 'probabilidade':1, 'reducao_vida':3} # perde 3 anos
         }
 
         self.pre_disposicao = self.opcoes_doencas_hereditarias[random.randint(1, 3)]
         # probabilidade de ter a doenca aumenta a cada ano.. mas seu crescimento eh aleatorio.
         # probabilidade aumenta de 0, 1 ou 2 por cento ao ano.
         print(self.pre_disposicao)
-
+        print(self.pre_disposicao['doenca'])
 
 
         self.biotipo = random.choice(self.opcoes_biotipo)
@@ -173,8 +173,13 @@ class Pessoa:
 
     def Envelhecer(self):
         idade_esperada = 100
+        probabilidade = self.pre_disposicao['probabilidade']
+        doente = 0
 
         while self.idade < idade_esperada:
+            if self.idade >= self.pre_disposicao['idade_inicio']:
+                probabilidade += random.randint(0,3)
+
             if self.idade < 10:
                 self.Engordar()
                 self.Crescer()
@@ -199,32 +204,45 @@ class Pessoa:
                     else:
                         self.Emagrecer()
             self.idade += 1
-            print('Envelheci um ano.')
+            #print('Envelheci um ano.')
             if self.peso <= 19 and self.idade > 13:
                 print('Morri de anorexia')
                 break
+        print('probabilidade:', probabilidade)
+        print('anos restante: ',idade_esperada)
+        morte = (probabilidade - 100) * self.pre_disposicao['reducao_vida']
+        print('idade esperada antes:', idade_esperada,'idade:', self.idade)
+        print(morte)
+        self.idade -= morte
+        print('idade esperada depois:', idade_esperada,'idade:', self.idade)
+        if self.idade <= 0:
+            print("Morreu")
+
+
         self.gordura += 1
+        if self.idade < 0:
+            pass
         return self.idade
 
     def Engordar(self):
         if self.idade < 10:
             self.peso += 5
-            print('Engordei 5 kilos')
+            #print('Engordei 5 kilos')
         self.peso += 2
-        print('Engordei um kilo')
+        #print('Engordei um kilo')
         return self.peso
 
     def Emagrecer(self):
         self.peso -= 1
-        print('Emagreci um quilo')
+        #print('Emagreci um quilo')
         return self.peso
 
     def Crescer(self):
         if self.idade <= 17:
             self.altura += random.randrange(3,7)
-            print('Cresci 10 cm')
+            #print('Cresci 10 cm')
         self.altura += random.randrange(3,6)
-        print('Cresci 5 cm')
+        #print('Cresci 5 cm')
         return self.altura
 
     #def __str__(self):
