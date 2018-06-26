@@ -146,24 +146,41 @@ class Pessoa:
     def __init__(self,nome,idade,peso,altura):
         self.nome = nome
         self.idade = idade
-        self.peso = idade
+        self.peso = peso
         self.altura = altura
 
         self.gordura = 0
 
+        self.nomes = ['João', 'Lucas', 'Cleiton', 'Diego', 'Adenildo', 'Cesar', 'Luana', 'Roza']
+
         self.opcoes_biotipo = ['magro', 'gordo']
+        self.opcoes_doencas_hereditarias = {
+            1:{'doenca':'hipertensão', 'idade_inicio':25, 'probabilidade':1, 'reducao_vida':1},
+            2:{'doenca':'diabetes', 'idade_inicio':10, 'probabilidade':1, 'reducao_vida':2},  # perde 2 anos
+            3:{'doenca':'cancer', 'idade_incio':2, 'probabilidade':1, 'reducao_vida':3} # perde 3 anos
+        }
+
+        self.pre_disposicao = self.opcoes_doencas_hereditarias[random.randint(1, 3)]
+        # probabilidade de ter a doenca aumenta a cada ano.. mas seu crescimento eh aleatorio.
+        # probabilidade aumenta de 0, 1 ou 2 por cento ao ano.
+        print(self.pre_disposicao)
+
+
+
         self.biotipo = random.choice(self.opcoes_biotipo)
         print("MEU BIOTIPO VAI SER: ",self.biotipo)
 
 
     def Envelhecer(self):
-        while self.idade < 100:
+        idade_esperada = 100
+
+        while self.idade < idade_esperada:
             if self.idade < 10:
                 self.Engordar()
                 self.Crescer()
-
             else:
                 if self.idade <= 21:
+
                     self.Crescer()
 
                 variacao = random.randint(0,100)
@@ -192,6 +209,7 @@ class Pessoa:
     def Engordar(self):
         if self.idade < 10:
             self.peso += 5
+            print('Engordei 5 kilos')
         self.peso += 2
         print('Engordei um kilo')
         return self.peso
@@ -202,8 +220,11 @@ class Pessoa:
         return self.peso
 
     def Crescer(self):
-        self.altura += 0.5
-        print('Cresci 0,5 cm')
+        if self.idade <= 17:
+            self.altura += random.randrange(3,7)
+            print('Cresci 10 cm')
+        self.altura += random.randrange(3,6)
+        print('Cresci 5 cm')
         return self.altura
 
     #def __str__(self):
