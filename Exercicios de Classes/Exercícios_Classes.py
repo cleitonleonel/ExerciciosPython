@@ -149,12 +149,12 @@ class Pessoa:
         self.peso = idade
         self.altura = altura
 
+        self.gordura = 0
+
         self.opcoes_biotipo = ['magro', 'gordo']
         self.biotipo = random.choice(self.opcoes_biotipo)
         print("MEU BIOTIPO VAI SER: ",self.biotipo)
 
-        self.emagrecer = [1,2]
-        self.definir = random.choice(self.emagrecer)
 
     def Envelhecer(self):
         while self.idade < 100:
@@ -182,25 +182,34 @@ class Pessoa:
                     else:
                         self.Emagrecer()
             self.idade += 1
-
+            print('Envelheci um ano.')
+            if self.peso <= 19 and self.idade > 13:
+                print('Morri de anorexia')
+                break
+        self.gordura += 1
         return self.idade
 
     def Engordar(self):
-        self.peso += 1
+        if self.idade < 10:
+            self.peso += 5
+        self.peso += 2
+        print('Engordei um kilo')
         return self.peso
 
     def Emagrecer(self):
         self.peso -= 1
+        print('Emagreci um quilo')
         return self.peso
 
     def Crescer(self):
         self.altura += 0.5
+        print('Cresci 0,5 cm')
         return self.altura
 
     #def __str__(self):
     #    return ('Nome:'+ self.nome+'idade:'+self.idade+'peso:'+self.peso+'altura:'+self.altura)
 
-alguem = Pessoa('João',0,2,50)
+alguem = Pessoa('João',0,2,0)
 alguem.Envelhecer()
 print(alguem)
-print('Nome:'+ alguem.nome+'idade:'+str(alguem.idade)+'peso:'+str(alguem.peso)+'altura:'+str(alguem.altura))
+print('Nome: '+ alguem.nome+' idade: '+str(alguem.idade)+' peso: '+str(alguem.peso)+' altura: '+str(alguem.altura)+ ' Biotipo: ' + str(alguem.biotipo))
