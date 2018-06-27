@@ -2,6 +2,7 @@
 # -*- coding: UTF-8 -*-
 #
 import random
+import datetime
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -151,13 +152,13 @@ class Pessoa:
 
         self.gordura = 0
 
-        self.nomes = ['João', 'Lucas', 'Cleiton', 'Diego', 'Adenildo', 'Cesar', 'Luana', 'Roza']
+
 
         self.opcoes_biotipo = ['magro', 'gordo']
         self.opcoes_doencas_hereditarias = {
-            1:{'doenca':'hipertensão', 'idade_inicio':25, 'probabilidade':1, 'reducao_vida':1},
-            2:{'doenca':'diabetes', 'idade_inicio':10, 'probabilidade':1, 'reducao_vida':2},  # perde 2 anos
-            3:{'doenca':'cancer', 'idade_inicio':2, 'probabilidade':1, 'reducao_vida':3} # perde 3 anos
+            1:{'doenca':'hipertensão', 'idade_inicio':25, 'probabilidade':10, 'reducao_vida':1}, # perde 1 ano
+            2:{'doenca':'diabetes', 'idade_inicio':10, 'probabilidade':12, 'reducao_vida':2},  # perde 2 anos
+            3:{'doenca':'cancer', 'idade_inicio':2, 'probabilidade':15, 'reducao_vida':3} # perde 3 anos
         }
 
         self.pre_disposicao = self.opcoes_doencas_hereditarias[random.randint(1, 3)]
@@ -172,20 +173,27 @@ class Pessoa:
 
 
     def Envelhecer(self):
-        idade_esperada = 100
-        probabilidade = self.pre_disposicao['probabilidade']
+        idade_esperada = random.randint(20, 90)
+        self.pre_disposicao['diagnosticado'] = False
         doente = 0
 
         while self.idade < idade_esperada:
-            if self.idade >= self.pre_disposicao['idade_inicio']:
-                probabilidade += random.randint(0,3)
+            if self.pre_disposicao['diagnosticado'] == False:
+                if self.idade >= self.pre_disposicao['idade_inicio']:
+                    chance = random.randint(0,100)
+                    if chance <= self.pre_disposicao['probabilidade']:
+                        self.pre_disposicao['diagnosticado'] = True
+                    else:
+                        self.pre_disposicao['probabilidade'] += random.randint(0,3)
+            else:
+                idade_esperada = idade_esperada - self.pre_disposicao['reducao_vida']
+
 
             if self.idade < 10:
                 self.Engordar()
                 self.Crescer()
             else:
                 if self.idade <= 21:
-
                     self.Crescer()
 
                 variacao = random.randint(0,100)
@@ -208,20 +216,9 @@ class Pessoa:
             if self.peso <= 19 and self.idade > 13:
                 print('Morri de anorexia')
                 break
-        print('probabilidade:', probabilidade)
+        print('probabilidade:', self.pre_disposicao['probabilidade'])
         print('anos restante: ',idade_esperada)
-        morte = (probabilidade - 100) * self.pre_disposicao['reducao_vida']
         print('idade esperada antes:', idade_esperada,'idade:', self.idade)
-        print(morte)
-        self.idade -= morte
-        print('idade esperada depois:', idade_esperada,'idade:', self.idade)
-        if self.idade <= 0:
-            print("Morreu")
-
-
-        self.gordura += 1
-        if self.idade < 0:
-            pass
         return self.idade
 
     def Engordar(self):
@@ -247,8 +244,109 @@ class Pessoa:
 
     #def __str__(self):
     #    return ('Nome:'+ self.nome+'idade:'+self.idade+'peso:'+self.peso+'altura:'+self.altura)
+'''
+nomes = ['João', 'Lucas', 'Cleiton', 'Diego', 'Adenildo', 'Cesar', 'Luana', 'Roza']
 
-alguem = Pessoa('João',0,2,0)
+alguem = Pessoa(nomes[random.randint(0, len(nomes))],0,2,0)
 alguem.Envelhecer()
 print(alguem)
 print('Nome: '+ alguem.nome+' idade: '+str(alguem.idade)+' peso: '+str(alguem.peso)+' altura: '+str(alguem.altura)+ ' Biotipo: ' + str(alguem.biotipo))
+'''
+
+class Conta:
+    def __init__(self, nome, saldo=0):
+        self.numero_conta = str(random.randint(10000,99999))+'-'+str(random.randint(1,9))
+        self.nome_correntista = nome
+        self.saldo = saldo
+        self.historico = []
+
+    def alterarNome(self):
+        self.nome_correntista = input('Digite um novo nome de correntista: ')
+        return self.nome_correntista
+
+    def deposito(self):
+        valor = int(input('Qual o valor do depósito? '))
+        self.saldo += valor
+        print(f'Contando dinheiro, aguarde...\nSalvando no histórico de depósitos...\nR${valor} depositados em sua conta. Seu novo saldo é de: R${self.saldo}')
+        self.historico.append(f'Depósito no valor de R${valor}')
+        return self.saldo
+
+    def saque(self):
+        valor = int(input('Qual o valor do saque? '))
+        if valor > self.saldo:
+            print('Saldo insuficiente!')
+        else:
+            self.saldo -= valor
+            print(f'Separando o seu dinheiro, aguarde...\nSalvando no histórico de saques...\nR${valor} debitados de sua conta. Seu novo saldo é de: R${self.saldo}')
+            self.historico.append(f'Saque no valor de R${valor}')
+            return self.saldo
+
+    def extrato(self):
+        print(f'\nNome do correntista: {conta.nome_correntista} | Número da conta: {conta.numero_conta}')
+        for transacoes in self.historico:
+            print(transacoes)
+        print(f'Saldo final: R${self.saldo}')
+
+'''
+conta = Conta('José Roserbaldo Pereira',random.randint(0,10000))
+while True:
+    opcao = int(input('1. Alterar nome do titular\n2. Fazer um depósito\n3. Fazer um saque\n4. Tirar extrato\n0. Sair\nO que você gostaria de fazer? '))
+    if opcao == 1:
+        conta.alterarNome()
+    elif opcao == 2:
+        conta.deposito()
+    elif opcao == 3:
+        conta.saque()
+    elif opcao == 4:
+        conta.extrato()
+    elif opcao == 0:
+        break
+    else:
+        print('Comando inválido!')
+
+
+print(f'\nNome do correntista: {conta.nome_correntista}\nNúmero da conta: {conta.numero_conta}\nSaldo: {conta.saldo} ')
+'''
+
+class TV:
+    def __init__(self):
+        self.estado = False
+        self.volume = 0
+        self.canal = 0
+    def ligar_desligar(self):
+        if self.estado == False:
+            self.estado = True
+            print('TV ligada')
+        else:
+            self.estado = False
+            print('TV desligada')
+    def aumentar_volume(self):
+        self.volume += 1
+        print(f'Volume: {self.volume}')
+        return self.volume
+    def diminuir_volume(self):
+        self.volume -= 1
+        print(f'Volume: {self.volume}')
+        return self.volume
+
+    def trocar_canal(self):
+        self.canal = input('2. TVE\n4. TV Gazeta/Globo\n6. TV Vitória/Record\n7. TV Tribuna/SBT\n10. TV Capixaba/Band\n'
+                           'Digite o número do canal que você quer: ')
+        print(f'Agora você está no canal {self.canal}')
+        return self.canal
+tv = TV()
+while True:
+    opcao = int(input('0. Ligar/Desligar a TV\n1. Mudar canal\n2. Aumentar o volume\n3. Abaixar o volume\n'
+                      'O que você gostaria de fazer? '))
+    if opcao == 0:
+        tv.ligar_desligar()
+    elif opcao == 1:
+        tv.trocar_canal()
+    elif opcao == 2:
+        tv.aumentar_volume()
+    elif opcao == 3:
+        tv.diminuir_volume()
+
+
+
+
