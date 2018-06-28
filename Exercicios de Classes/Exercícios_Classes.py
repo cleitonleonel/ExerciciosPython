@@ -334,6 +334,8 @@ class TV:
                            'Digite o número do canal que você quer: ')
         print(f'Agora você está no canal {self.canal}')
         return self.canal
+
+"""
 tv = TV()
 while True:
     opcao = int(input('0. Ligar/Desligar a TV\n1. Mudar canal\n2. Aumentar o volume\n3. Abaixar o volume\n'
@@ -346,7 +348,64 @@ while True:
         tv.aumentar_volume()
     elif opcao == 3:
         tv.diminuir_volume()
+"""
 
 
+class Tamagushi:
+
+    def __init__(self, nome, fome, saude, idade):
+        self.nome = nome
+        self.fome = fome
+        self.saude = saude
+        self.idade = idade
+
+    def obter_nome(self):
+        return self.nome
+
+    def altera_nome(self):
+        self.nome = input('Dê um novo nome ao bichinho: ')
+        return self.nome
+
+    def obter_fome(self):
+        return self.fome
+
+    def alterar_fome(self):
+        self.fome = int(input('Digite um novo percentual de fome para o bichinho: '))
+        self.humor()
+        return self.fome
+
+    def obter_saude(self):
+        return self.saude
+
+    def alterar_saude(self):
+        self.humor()
+        self.saude = int(input('Digite um novo percentusl de saúde para o bichinho: '))
+        return self.saude
+
+    def obter_idade(self):
+        return self.idade
+
+    def alterar_idade(self):
+        self.idade = input('Dê uma nova idade para o bichinho: ')
+
+    def humor(self):
+        if self.fome >= self.saude:
+            print('%s está com fome e está ficando doente.' % self.nome)
+        elif (self.fome * self.saude) >= 80 :
+            print('%s está com fome e mal humorado.' % self.nome)
+        else:
+            print('%s está ótimo.' % self.nome)
+        return self.fome * self.saude
+
+
+bicho = Tamagushi('Tamagoshi', 6, 5, 10)
+trocar_nome = bicho.altera_nome()
+print('O Nome do nosso bichinho agora é %s' % trocar_nome)
+nome = bicho.obter_nome()
+print('Olá %s' % nome)
+humor = bicho.humor()
+print(humor)
+trocar_fome = bicho.alterar_fome()
+print(trocar_fome)
 
 
