@@ -282,7 +282,7 @@ class Conta:
             return self.saldo
 
     def extrato(self):
-        print(f'\nNome do correntista: {conta.nome_correntista} | Número da conta: {conta.numero_conta}')
+        print(f'\nNome do correntista: {self.nome_correntista} | Número da conta: {self.numero_conta}')
         for transacoes in self.historico:
             print(transacoes)
         print(f'Saldo final: R${self.saldo}')
@@ -335,7 +335,6 @@ class TV:
         print(f'Agora você está no canal {self.canal}')
         return self.canal
 
-"""
 tv = TV()
 while True:
     opcao = int(input('0. Ligar/Desligar a TV\n1. Mudar canal\n2. Aumentar o volume\n3. Abaixar o volume\n'
@@ -348,7 +347,7 @@ while True:
         tv.aumentar_volume()
     elif opcao == 3:
         tv.diminuir_volume()
-"""
+
 
 
 class Tamagushi:
@@ -397,7 +396,7 @@ class Tamagushi:
             print('%s está ótimo.' % self.nome)
         return self.fome * self.saude
 
-
+'''
 bicho = Tamagushi('Tamagoshi', 6, 5, 10)
 trocar_nome = bicho.altera_nome()
 print('O Nome do nosso bichinho agora é %s' % trocar_nome)
@@ -407,5 +406,6 @@ humor = bicho.humor()
 print(humor)
 trocar_fome = bicho.alterar_fome()
 print(trocar_fome)
+'''
 
 
