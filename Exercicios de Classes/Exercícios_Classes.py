@@ -1,8 +1,10 @@
-#!/usr/bin/env python3
+#!/usr/bin/env/python3
 # -*- coding: UTF-8 -*-
 #
 import random
-import datetime
+import os,sys
+
+print(sys.path)
 
 class Bola:
     def __init__(self, cor, cir, material):
@@ -29,6 +31,8 @@ if __name__ == '__main__':
     print('A bola agora é',action.mostraCor())
 
 """
+
+
 class Quadrado:
     def __init__(self,lado):
         self.lado = lado
@@ -43,7 +47,6 @@ class Quadrado:
     def CalculaArea(self):
         self.total_area = self.lado * self.lado
         return self.total_area
-
 """
 if __name__ == '__main__':
 
@@ -142,6 +145,7 @@ print(f'Você vai precisar de {soma_area} pisos para cobrir a área.')
 soma_perimetro = action.calcular_perimetro()
 print(f'Também vai precisar de {soma_perimetro} metros de rodapé para calçar todas as paredes.')
 '''
+
 
 class Pessoa:
     def __init__(self,nome,idade,peso,altura):
@@ -253,6 +257,7 @@ print(alguem)
 print('Nome: '+ alguem.nome+' idade: '+str(alguem.idade)+' peso: '+str(alguem.peso)+' altura: '+str(alguem.altura)+ ' Biotipo: ' + str(alguem.biotipo))
 '''
 
+
 class Conta:
     def __init__(self, nome, saldo=0):
         self.numero_conta = str(random.randint(10000,99999))+'-'+str(random.randint(1,9))
@@ -308,6 +313,7 @@ while True:
 print(f'\nNome do correntista: {conta.nome_correntista}\nNúmero da conta: {conta.numero_conta}\nSaldo: {conta.saldo} ')
 '''
 
+
 class TV:
     def __init__(self):
         self.estado = False
@@ -330,10 +336,13 @@ class TV:
         return self.volume
 
     def trocar_canal(self):
+        from class_epg import programacao_canais
         self.canal = input('2. TVE\n4. TV Gazeta/Globo\n6. TV Vitória/Record\n7. TV Tribuna/SBT\n10. TV Capixaba/Band\n'
                            'Digite o número do canal que você quer: ')
         print(f'Agora você está no canal {self.canal}')
-        return self.canal
+        programacao = programacao_canais()[int(self.canal)]
+        print(programacao)
+        return programacao
 
 tv = TV()
 while True:
